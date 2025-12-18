@@ -1,4 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
+import { appRoutes } from './routes';
+import sendSuccessResponse from './utils/sendSuccessResponse';
 
 // Create Express app
 const app: Application = express();
@@ -14,17 +16,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // ========================================
 // ROUTES
 // ========================================
-
 app.get('/', (req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
+  sendSuccessResponse(res, {
+    statusCode: 200,
     message: 'Server is running',
-    timestamp: new Date().toISOString(),
+    data: new Date().toISOString(),
   });
 });
 
 // API routes
-// app.use('/api/users', userRoutes);
+app.use('/api/v1', appRoutes);
 
 // ========================================
 // ERROR HANDLING
@@ -39,7 +40,7 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-// Global error handler - যেকোন error catch করার জন্য
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error('Global error:', err);
 
