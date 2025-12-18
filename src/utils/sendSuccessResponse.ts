@@ -17,6 +17,7 @@ const sendSuccessResponse = <T>(res: Response, data: TResponseData<T>) => {
     statusCode: data.statusCode,
     message: data.message,
     data: data.data,
+    meta: data.meta,
   });
 };
 

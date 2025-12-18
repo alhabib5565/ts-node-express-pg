@@ -20,14 +20,14 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   sendSuccessResponse(res, {
     statusCode: httpStatus.OK,
     message: ' User retrieved succesfully',
-    data: data,
     meta: meta,
+    data: data,
   });
 });
 
 const getUserById = catchAsync(async (req: Request, res: Response) => {
-  const { userId } = req.params;
-  const result = await userService.getUserById(userId as string);
+  const { id } = req.params;
+  const result = await userService.getUserById(id as string);
 
   sendSuccessResponse(res, {
     statusCode: httpStatus.OK,
@@ -37,8 +37,8 @@ const getUserById = catchAsync(async (req: Request, res: Response) => {
 });
 
 const deleteUser = catchAsync(async (req: Request, res: Response) => {
-  const { userId } = req.params;
-  const result = await userService.deleteUserById(userId as string);
+  const { id } = req.params;
+  const result = await userService.deleteUserById(id as string);
 
   sendSuccessResponse(res, {
     statusCode: httpStatus.OK,
@@ -48,8 +48,8 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const updateUser = catchAsync(async (req: Request, res: Response) => {
-  const { userId } = req.params;
-  const result = await userService.updateUserById(userId as string, req.body);
+  const { id } = req.params;
+  const result = await userService.updateUserById(id as string, req.body);
 
   sendSuccessResponse(res, {
     statusCode: httpStatus.OK,

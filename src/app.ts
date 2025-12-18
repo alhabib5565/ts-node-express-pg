@@ -1,11 +1,13 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import { appRoutes } from './routes';
 import sendSuccessResponse from './utils/sendSuccessResponse';
+import cookie_parser from 'cookie-parser';
 
 // Create Express app
 const app: Application = express();
 // JSON body parser
 app.use(express.json());
+app.use(cookie_parser());
 
 // Request logging middleware (development এ useful)
 app.use((req: Request, res: Response, next: NextFunction) => {
