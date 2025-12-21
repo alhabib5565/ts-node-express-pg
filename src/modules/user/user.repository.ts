@@ -1,8 +1,3 @@
-// ==========================================
-// 4. user.repository.ts
-// কেন: Database operations আলাদা রাখার জন্য
-// ==========================================
-
 import pool from '../../config/database';
 import { IUser } from './user.interface';
 
