@@ -11,11 +11,12 @@ const getFaqById = async (id: string) => {
   return faq;
 };
 
-const getAllFaqs = async (page: number = 1, limit: number = 10) => {
+const getAllFaqs = async (query: Record<string, any>) => {
+  const { page = 1, limit = 10, search = '' } = query;
   const offset = (page - 1) * limit;
 
   const [data, total] = await Promise.all([
-    faqRepository.findAllFaqs(limit, offset),
+    faqRepository.findAllFaqs(limit, offset, search),
     faqRepository.countFaqs(),
   ]);
 

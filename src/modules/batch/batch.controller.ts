@@ -15,7 +15,7 @@ const createBatch = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBatches = catchAsync(async (req: Request, res: Response) => {
-  const { data, meta } = await batchService.getAllBatches();
+  const { data, meta } = await batchService.getAllBatches(req.query);
 
   sendSuccessResponse(res, {
     statusCode: httpStatus.OK,

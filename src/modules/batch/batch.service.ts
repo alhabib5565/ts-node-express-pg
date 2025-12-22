@@ -11,11 +11,12 @@ const getBatchById = async (id: string) => {
   return batch;
 };
 
-const getAllBatches = async (page: number = 1, limit: number = 10) => {
+const getAllBatches = async (query: Record<string, any>) => {
+  const { page = 1, limit = 10, search = '' } = query;
   const offset = (page - 1) * limit;
 
   const [data, total] = await Promise.all([
-    batchRepository.findAllBatches(limit, offset),
+    batchRepository.findAllBatches(limit, offset, search),
     batchRepository.countBatches(),
   ]);
 

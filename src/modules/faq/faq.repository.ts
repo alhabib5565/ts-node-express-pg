@@ -19,13 +19,15 @@ const findFaqById = async (id: string): Promise<IFaq | null> => {
   return result.rows[0] ?? null;
 };
 
-const findAllFaqs = async (limit: number = 10, offset: number = 0): Promise<IFaq[]> => {
+const findAllFaqs = async (limit: number, offset: number, search: string): Promise<IFaq[]> => {
   const query = `
     SELECT * FROM faqs
+    ${search ? `WHERE question ILIKE $3` : ''}
     ORDER BY created_at DESC
     LIMIT $1 OFFSET $2
   `;
-  const result = await pool.query(query, [limit, offset]);
+  const params = search ? [limit, offset, `%${search}%`] : [limit, offset];
+  const result = await pool.query(query, params);
   return result.rows;
 };
 

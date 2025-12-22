@@ -11,7 +11,7 @@ const createBatch = async (batchData: IBatch): Promise<IBatch> => {
   const values = [
     batchData.name,
     batchData.description ?? null,
-    batchData.day,
+    JSON.stringify(batchData.day),
     batchData.time,
     batchData.is_active ?? true,
   ];
@@ -25,13 +25,23 @@ const findBatchById = async (id: string): Promise<IBatch | null> => {
   return result.rows[0] ?? null;
 };
 
-const findAllBatches = async (limit: number = 10, offset: number = 0): Promise<IBatch[]> => {
+const findAllBatches = async (
+  limit: number = 10,
+  offset: number = 0,
+  search: string = ''
+): Promise<IBatch[]> => {
   const query = `
-    SELECT * FROM batches
+    SELECT *
+    FROM batches
+    ${search ? `WHERE name ILIKE $3` : ''} 
     ORDER BY created_at DESC
     LIMIT $1 OFFSET $2
   `;
-  const result = await pool.query(query, [limit, offset]);
+
+  const params = search ? [limit, offset, `%${search}%`] : [limit, offset];
+
+  const result = await pool.query(query, params);
+
   return result.rows;
 };
 
