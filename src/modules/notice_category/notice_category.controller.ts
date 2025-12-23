@@ -13,13 +13,7 @@ const createNoticeCategory = async (req: Request, res: Response) => {
 };
 
 const getAllNoticeCategories = async (req: Request, res: Response) => {
-  const { search = '', page = 1, limit = 10 } = req.query;
-
-  const result = await noticeCategoryService.getAllNoticeCategories(
-    search as string,
-    Number(page),
-    Number(limit)
-  );
+  const result = await noticeCategoryService.getAllNoticeCategories(req.query);
 
   res.status(httpStatus.OK).json({
     success: true,

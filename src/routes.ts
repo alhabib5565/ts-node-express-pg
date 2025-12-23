@@ -6,6 +6,7 @@ import { courseCategoryRoutes } from './modules/course_category/course_category.
 import { faqRoutes } from './modules/faq/faq.route';
 import { courseRoutes } from './modules/course/course.route';
 import { noticeCategoryRoutes } from './modules/notice_category/notice_category.route';
+import { noticeRoutes } from './modules/notice/notice.route';
 
 const router = express();
 
@@ -16,5 +17,6 @@ router.use('/course-categories', courseCategoryRoutes);
 router.use('/faqs', faqRoutes);
 router.use('/courses', courseRoutes);
 router.use('/notice-categories', noticeCategoryRoutes);
+router.use('/notices', noticeRoutes);
 
 export const appRoutes = router;

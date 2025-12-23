@@ -5,7 +5,10 @@ const createNoticeCategory = async (payload: INoticeCategory) => {
   return await noticeCategoryRepository.createNoticeCategory(payload);
 };
 
-const getAllNoticeCategories = async (search: string, page: number, limit: number) => {
+const getAllNoticeCategories = async (query: Record<string, any>) => {
+  console.log(query?.limit);
+  const { search = '', page = 1, limit = 10 } = query;
+
   const offset = (page - 1) * limit;
 
   const data = await noticeCategoryRepository.getAllNoticeCategories(search, limit, offset);
