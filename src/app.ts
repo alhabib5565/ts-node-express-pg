@@ -15,6 +15,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+// app.ts
+import path from 'path';
+
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
 // ========================================
 // ROUTES
 // ========================================

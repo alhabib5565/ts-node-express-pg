@@ -7,7 +7,7 @@ export const createCourseSchema = z.object({
     title: z.string().min(1, 'Title is required'),
     bio: z.string().min(1, 'Bio is required'),
     description: z.string().min(1, 'Description is required'),
-    thumbnail: z.string().url('Thumbnail must be a valid URL').min(1, 'Thumbnail is required'),
+    thumbnail: z.string().min(1, 'Thumbnail is required'),
     price: z.number().positive('Price must be greater than 0'),
     level: z.enum(LEVELS, { message: 'Level must be one of beginner, intermediate, advanced' }),
     category_id: z.number().int('Category ID must be an integer'),

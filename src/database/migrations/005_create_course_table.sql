@@ -17,4 +17,4 @@ CREATE TABLE IF NOT EXISTS courses (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW(),
     CONSTRAINT fk_courses_category_id_categories FOREIGN KEY (category_id) REFERENCES course_categories (id) ON DELETE SET NULL
-)
+);
