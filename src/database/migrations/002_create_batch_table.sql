@@ -8,7 +8,3 @@ CREATE TABLE IF NOT EXISTS batches (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
-
-DROP Table batches;
-
-ALTER TABLE batches ADD COLUMN time TIMESTAMP;
