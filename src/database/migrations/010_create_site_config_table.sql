@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS site_configs (
+    id SERIAL PRIMARY KEY,
+    website_name VARCHAR(255) NOT NULL,
+    website_logo TEXT NOT NULL,
+    favicon TEXT NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    home_meta_title VARCHAR(255) NOT NULL,
+    home_meta_description TEXT NOT NULL,
+    about_meta_title VARCHAR(255) NOT NULL,
+    about_meta_description TEXT NOT NULL,
+    course_meta_title VARCHAR(255) NOT NULL,
+    course_meta_description TEXT NOT NULL,
+    contact_meta_title VARCHAR(255) NOT NULL,
+    contact_meta_description TEXT NOT NULL,
+    footer_title VARCHAR(255) NOT NULL,
+    footer_description TEXT NOT NULL,
+    addresses JSONB NOT NULL DEFAULT '[]',
+    social_links JSONB NOT NULL DEFAULT '[]',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

@@ -3,7 +3,7 @@ import { ISiteConfig } from './site-config.interface';
 
 const createSiteConfig = async (siteConfigData: ISiteConfig): Promise<ISiteConfig> => {
   const query = `
-    INSERT INTO site_config (
+    INSERT INTO site_configs (
       website_name, website_logo, favicon, contact_number, email,
       home_meta_title, home_meta_description,
       about_meta_title, about_meta_description,
@@ -41,11 +41,13 @@ const createSiteConfig = async (siteConfigData: ISiteConfig): Promise<ISiteConfi
 };
 
 const findSiteConfig = async (): Promise<ISiteConfig | null> => {
-  const result = await pool.query(`SELECT * FROM site_config LIMIT 1`);
+  const result = await pool.query(`SELECT * FROM site_configs LIMIT 1`);
   return result.rows[0] ?? null;
 };
 
-const updateSiteConfig = async (siteConfigData: Partial<ISiteConfig>): Promise<ISiteConfig | null> => {
+const updateSiteConfig = async (
+  siteConfigData: Partial<ISiteConfig>
+): Promise<ISiteConfig | null> => {
   const fields: string[] = [];
   const values: any[] = [];
   let param = 1;
@@ -122,7 +124,7 @@ const updateSiteConfig = async (siteConfigData: Partial<ISiteConfig>): Promise<I
   if (!fields.length) return null;
 
   const query = `
-    UPDATE site_config
+    UPDATE site_configs
     SET ${fields.join(', ')}, updated_at = NOW()
     RETURNING *
   `;

@@ -9,6 +9,7 @@ import { noticeCategoryRoutes } from './modules/notice_category/notice_category.
 import { noticeRoutes } from './modules/notice/notice.route';
 import { contactMessageRoutes } from './modules/contact-message/contact-message.route';
 import { branchRoutes } from './modules/branch/branch.route';
+import { siteConfigRoutes } from './modules/site-config/site-config.route';
 
 const router = express();
 
@@ -22,5 +23,6 @@ router.use('/notice-categories', noticeCategoryRoutes);
 router.use('/notices', noticeRoutes);
 router.use('/contact-messages', contactMessageRoutes);
 router.use('/branches', branchRoutes);
+router.use('/site-config', siteConfigRoutes);
 
 export const appRoutes = router;
