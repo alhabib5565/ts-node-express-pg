@@ -1,3 +1,4 @@
+import { studentCoursesRepository } from '../student-courses/student-courses.repository';
 import { IUser } from './user.interface';
 import { userRepository } from './user.repository';
 import * as userUtils from './user.utils';
@@ -17,6 +18,8 @@ const createNewUser = async (userData: IUser) => {
     ...userData,
     password: hashedPassword,
   });
+
+  await studentCoursesRepository.createStudentCourse(user.id, userData.course_id);
 
   // 4. Return sanitized user
   return userUtils.sanitizeUser(user);
