@@ -1,6 +1,6 @@
 import pool from '../../config/database';
 
-const createStudentCourse = (student_id: number, course_id: number) => {
+const createStudentCourse = (student_id: string, course_id: number) => {
   const query = `
         INSERT INTO student_courses (student_id, course_id)
         VALUES ($1, $2)
