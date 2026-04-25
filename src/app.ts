@@ -2,6 +2,9 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import { appRoutes } from './routes';
 import sendSuccessResponse from './utils/sendSuccessResponse';
 import cookie_parser from 'cookie-parser';
+import path from 'path';
+import { swaggerSpec } from './config/swagger.config';
+import swaggerUi from 'swagger-ui-express';
 
 // Create Express app
 const app: Application = express();
@@ -9,20 +12,13 @@ const app: Application = express();
 app.use(express.json());
 app.use(cookie_parser());
 
-// Request logging middleware (development এ useful)
-app.use((req: Request, res: Response, next: NextFunction) => {
-  console.log(`${req.method} ${req.path}`);
-  next();
-});
-
-// app.ts
-import path from 'path';
-
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
-
 // ========================================
 // ROUTES
 // ========================================
+
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.get('/', (req: Request, res: Response) => {
   sendSuccessResponse(res, {
     statusCode: 200,

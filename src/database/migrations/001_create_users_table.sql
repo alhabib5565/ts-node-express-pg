@@ -15,3 +15,5 @@ CREATE TABLE IF NOT EXISTS users (
 -- ALTER TABLE users ADD COLUMN reset_password_expires TIMESTAMP;
 
 -- CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);
+
+SELECT * FROM pg_database;

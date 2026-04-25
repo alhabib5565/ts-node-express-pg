@@ -12,13 +12,9 @@ const router = Router();
 
 // Routes
 router.post('/', validateData(createUserSchema), userController.createUser);
-
 router.get('/', userController.getAllUsers);
-
 router.get('/:id', userController.getUserById);
-
 router.put('/:id', validateData(updateUserSchema), userController.updateUser);
-
 router.delete('/:id', userController.deleteUser);
 
 export const userRoutes = router;
