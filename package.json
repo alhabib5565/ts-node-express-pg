@@ -11,7 +11,8 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
-    "migrate": "ts-node migrate.ts"
+    "migrate": "ts-node migrate.ts",
+    "swagger": "node src/config/swagger.config.ts"
   },
   "keywords": [],
   "author": "",
@@ -46,6 +47,7 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.0.2",
     "pg": "^8.16.3",
+    "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "typescript": "^5.9.3",

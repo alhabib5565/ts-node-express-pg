@@ -9,7 +9,23 @@ const router = Router();
 
 router.post(
   '/',
-  upload.single('file'), // ami validation korar age file upload korar korbo body er vitor thumtail e path add kore dite pari ja validate data diye validation kora hobe tai validation middleware er age upload use korchi
+  /**
+   * #swagger.summary = 'Create a new course'
+   * #swagger.description = 'Create a new course by passing course information in the request body.'
+   * #swagger.parameters['file'] = {
+      in: 'formData',
+      type: 'file',
+      required: true,
+      description: 'Course thumbnail image'
+    }
+    #swagger.parameters['course_info'] = {
+      in: 'formData',
+      type: 'string',
+      required: true,
+      description: 'Course info as JSON string',
+    }
+   */
+  upload.single('file'),
   (req: Request, res: Response, next: NextFunction) => {
     if (!req.file) {
       return res.status(400).json({ message: 'File is required' });
@@ -20,9 +36,12 @@ router.post(
   validateData(createCourseSchema),
   courseController.createCourse
 );
+
 router.get('/', courseController.getAllCourses);
 router.get('/:id', courseController.getCourseById);
+
 router.put('/:id', validateData(updateCourseSchema), courseController.updateCourse);
+
 router.delete('/:id', courseController.deleteCourse);
 
 export const courseRoutes = router;

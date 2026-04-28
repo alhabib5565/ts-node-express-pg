@@ -3,8 +3,8 @@ import { appRoutes } from './routes';
 import sendSuccessResponse from './utils/sendSuccessResponse';
 import cookie_parser from 'cookie-parser';
 import path from 'path';
-import { swaggerSpec } from './config/swagger.config';
 import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from '../swagger-output.json';
 
 // Create Express app
 const app: Application = express();

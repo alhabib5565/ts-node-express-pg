@@ -1,8 +1,3 @@
-//==========================================
-// 7. user.route.ts
-// কেন: API endpoints define করার জন্য
-// ==========================================
-
 import { Router } from 'express';
 import { validateData } from '../../middlewares/validateData';
 import { userController } from './user.controller';
